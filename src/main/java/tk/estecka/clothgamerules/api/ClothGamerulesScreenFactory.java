@@ -2,9 +2,9 @@ package tk.estecka.clothgamerules.api;
 
 import java.util.Optional;
 import java.util.function.Consumer;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.text.Text;
-import net.minecraft.world.rule.GameRules;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.gamerules.GameRules;
 
 public interface ClothGamerulesScreenFactory
 {
@@ -16,11 +16,11 @@ public interface ClothGamerulesScreenFactory
 		return new ClothGamerulesScreenBuilder().Parent(parent).ActiveValues(rules).ResetValues(resetValues).OnClosed(onClose).Build();
 	}
 
-	static public Screen CreateScreen(Screen parent, Text title, GameRules rules, Consumer<Optional<GameRules>> onClose){
+	static public Screen CreateScreen(Screen parent, Component title, GameRules rules, Consumer<Optional<GameRules>> onClose){
 		return new ClothGamerulesScreenBuilder().Parent(parent).Title(title).ActiveValues(rules).OnClosed(onClose).Build();
 	}
 
-	static public Screen CreateScreen(Screen parent, Text title, GameRules rules, GameRules resetValues, Consumer<Optional<GameRules>> onClose){
+	static public Screen CreateScreen(Screen parent, Component title, GameRules rules, GameRules resetValues, Consumer<Optional<GameRules>> onClose){
 		return new ClothGamerulesScreenBuilder().Parent(parent).Title(title).ActiveValues(rules).ResetValues(resetValues).OnClosed(onClose).Build();
 	}
 }

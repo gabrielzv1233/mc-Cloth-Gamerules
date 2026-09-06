@@ -1,43 +1,18 @@
 package tk.estecka.clothgamerules;
 
-import net.fabricmc.fabric.api.gamerule.v1.CustomGameRuleCategory;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.rule.GameRuleCategory;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.level.gamerules.GameRuleCategory;
 
 public interface IRuleCategory
 {
-	Text	GetTitle();
-	Identifier	GetId();
+	Component GetTitle();
+	Identifier GetId();
 
-
-/******************************************************************************/
-/* # Wrappers                                                                 */
-/******************************************************************************/
-
-	static public IRuleCategory Of(GameRuleCategory vanilla){
+	static public IRuleCategory Of(GameRuleCategory category){
 		return new IRuleCategory() {
-			@Override public Text GetTitle(){
-				return vanilla.getText().formatted(Formatting.BOLD, Formatting.YELLOW);
-			}
-		
-			@Override public Identifier GetId(){
-				return vanilla.id();
-			}
+			@Override public Component GetTitle(){ return category.label(); }
+			@Override public Identifier GetId(){ return category.id(); }
 		};
 	}
-
-	static public IRuleCategory Of(CustomGameRuleCategory fabric){
-		return new IRuleCategory() {
-			@Override public Text GetTitle(){
-				return fabric.getName();
-			}
-		
-			@Override public Identifier GetId(){
-				return fabric.getId();
-			}
-		};
-	}
-
 }

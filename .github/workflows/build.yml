@@ -1,9 +1,6 @@
 name: build
 
 on:
-  push:
-    branches:
-      - 26.2
   workflow_dispatch:
 
 jobs:
